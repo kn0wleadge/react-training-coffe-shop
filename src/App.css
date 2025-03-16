@@ -1,38 +1,91 @@
-.App {
-  text-align: center;
+header {
+    padding: 20px 5%;
+    text-align: center;
+    background: #433E3F;
+}
+footer {
+    position: sticky;
+    bottom: 0px;
+    background: #433E3F;
+    width: 100vw;
+    .order-count {
+        position: relative;
+        background: #ff0101;
+        text-align: center;
+        border-radius: 50%;
+        height: 24px;
+        width: 24px;
+        bottom: 32px;
+        right: -64px;
+        line-height: 24px;
+        transition: 500ms ease;
+    }
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.goodsTabs, .footerTabs {
+    background: #ffffff;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid #636363;
+    height: 48px;
+    .tab-not-selected{
+        color: #424242;
+        font-weight: 300;
+        padding: 12px;
+        transition: 300ms ease;
+    }
+    .tab-selected {
+        color: #000;
+        font-weight: 600;
+        border-bottom: 2px solid #000000;
+        padding: 12px;
+        transition: 300ms ease;
+    }
+}
+.goodsTabs{
+    position: sticky;
+    top: 0px;
+    z-index: 1000;
+}
+.footerTabs {
+    border-top: 1px solid #636363;
+    border-bottom: 0;
+    padding-bottom: 12px;
+}
+.card {
+    display: flex;
+    margin: 8px 4px;
+    background: #8a8d96;
+    position: relative;
+    border-radius: 8px;
+    -webkit-box-shadow: 0px 4px 4px -5px rgba(0, 0, 0, 0.28);
+    -moz-box-shadow: 0px 8px 4px -5px rgba(0, 0, 0, 0.28);
+    box-shadow: 0px 8px 4px -5px rgba(0, 0, 0, 0.28);
+    .card-photo{
+        padding: 8px;
+        border-radius: 20px;
+        background: #8a8d96;
+    }
+    .card-content {
+        padding: 4px;
+        background: #8a8d96;
+        border-bottom-right-radius: 8px;
+        border-top-right-radius: 8px;
+        h3, p {
+            background: #8a8d96;
+        }
+    }
+    .add-button {
+        position: absolute;
+        bottom: 8px;
+        right: 4px;
+        padding: 4px 8px;
+        background: #0052b1;
+        border-radius: 8px;
+    }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.coffee-drawer {
+    color: #000;
+    height: 75vh;
 }
