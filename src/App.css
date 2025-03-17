@@ -88,4 +88,10 @@ footer {
 .coffee-drawer {
     color: #000;
     height: 75vh;
+    h1, img, div {
+        color: inherit;
+    }
+    .coffee-drawer-title{
+        color: inherit;
+    }
 }

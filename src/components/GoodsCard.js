@@ -6,7 +6,7 @@ export default class GoodsCard extends Component {
   render() {
     return (
       <div className='card'>
-        <img className='card-photo' src={`./${this.data.title}.png`} alt={`${this.data.title}`}/>
+        <img className='card-photo' src={`./images/${this.data.title}.png`} alt={`${this.data.title}`}/>
         <div className='card-content'>
           <h3>{this.data.title}</h3>
           <p>{this.data.description}</p>
