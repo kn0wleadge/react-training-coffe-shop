@@ -4,6 +4,7 @@ import Header from './components/Header';
 import TabsMenu from './components/TabsMenu';
 import Footer from './components/Footer';
 import CoffeeAddForm from './components/CoffeeAddForm';
+import OrderList from './components/OrderList'
 
 export default class App extends Component {
   constructor(props) {
@@ -81,26 +82,63 @@ export default class App extends Component {
         info: 'init state',
         sizes: []
       },
-       orderlist:[]
+       orderlist:[],
+       footerTab: 0,
     }
     this.toggleDrawer = this.toggleDrawer.bind(this);
+    this.addOrderItem = this.addOrderItem.bind(this);
+    this.changeTab = this.changeTab.bind(this);
+    this.changeOrderItemAmount = this.changeOrderItemAmount.bind(this);
   }
-  
+
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevState.footerTab !== this.state.footerTab)
+    {
+      const el = document.getElementById("footer-tabs")
+      let i = 0;
+      for (const child of el.children){
+        child.className = i === this.state.footerTab ? 'tab-selected' : 'tab-not-selected'
+        i++;
+      }
+    }
+  }
 
   render() {
     return (
       <div>
         <Header />
+        {this.state.footerTab===0 ?
         <TabsMenu data={this.state.goodslist} order={this.state.orderlist} toggleDrawer={this.toggleDrawer}/>
-        <Footer orderNum={this.state.orderlist.length}/>
-        <CoffeeAddForm isOpen={this.state.isCoffeAddDrawerOpen} toggleDrawer={this.toggleDrawer} data={this.state.coffeAddDrawerData} addons={this.state.coffeaddonslist}/>
+        :(<OrderList data={this.state.orderlist} onItemAmountChange={this.changeOrderItemAmount}/>)}
+        <Footer orderNum={this.state.orderlist.length} onTabChange={this.changeTab}/>
+        <CoffeeAddForm isOpen={this.state.isCoffeAddDrawerOpen} toggleDrawer={this.toggleDrawer} data={this.state.coffeAddDrawerData} addons={this.state.coffeaddonslist} onAdd={this.addOrderItem}/>
       </div>
     )
+  }
+
+  changeTab(index){
+    this.setState({footerTab: index})
   }
 
   toggleDrawer(coffee){
     this.setState({isCoffeAddDrawerOpen: !this.state.isCoffeAddDrawerOpen});
     if (coffee.type==="coffee")
       this.setState({coffeAddDrawerData: coffee});
+  }
+
+  addOrderItem(item){
+    let newOrderList = this.state.orderlist
+    newOrderList.push({...item, amount: 1, id: newOrderList.length+1})
+    this.setState({orderlist: newOrderList})
+  }
+
+  changeOrderItemAmount(id, newAmount){
+    let item = this.state.orderlist.filter((el)=>el.id===id)
+    let newOrderList = this.state.orderlist.filter((el)=>el.id!==id)
+    if (newAmount > 0){
+      item[0].amount = newAmount
+      newOrderList.push(...item)
+    }
+    this.setState({orderlist: newOrderList})
   }
 }

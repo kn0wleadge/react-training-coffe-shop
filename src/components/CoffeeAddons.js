@@ -3,25 +3,7 @@ import { IoIosAddCircle } from "react-icons/io";
 import { IoIosRemoveCircle } from "react-icons/io";
 
 export default class CoffeeAddons extends Component {
-    constructor(props) {
-      super(props)
-    
-      this.state = {
-         sugarCount: 0,
-      }
-      this.removeSugar = this.removeSugar.bind(this)
-      this.addSugar = this.addSugar.bind(this)
-    }
-    
-
     addons = this.props.addons
-    removeSugar(){
-        this.setState({sugarCount: this.state.sugarCount-1})
-    }
-    addSugar(){
-        this.setState({sugarCount: this.state.sugarCount+1})
-    }
-
     render() {
     return (
       <div className='coffee-addons-list'>
@@ -32,13 +14,18 @@ export default class CoffeeAddons extends Component {
                 <h5>{el.price}₽</h5>
             </div>
             {el.price===0 ? (<div className='coffee-addon-sugar'>
-                {this.state.sugarCount>0 && <>
-                <IoIosRemoveCircle className='coffee-addon-sugar-remove' onClick={()=>this.removeSugar()}/>
-                    <var>{this.state.sugarCount}</var>
+                {this.props.sugarCount>0 && <>
+                <IoIosRemoveCircle className='coffee-addon-sugar-remove' onClick={()=>this.props.removeSugar()}/>
+                    <var>{this.props.sugarCount}</var>
                 </>}
-                <IoIosAddCircle className='coffee-addon-sugar-add' onClick={()=>this.addSugar()}/>
+                <IoIosAddCircle className='coffee-addon-sugar-add' onClick={()=>this.props.addSugar()}/>
                     </div>)
-         : <input type='checkbox' />}
+         : <input type='checkbox' onChange={(event)=>{
+          if (event.target.checked)
+            this.props.onAdd(el);
+          else 
+            this.props.onRemove(el);
+         }}/>}
         </div>)})}
       </div>
     )

@@ -52,6 +52,17 @@ footer {
     border-bottom: 0;
     padding-bottom: 12px;
 }
+.order-submit-button {
+    color: #000;
+    margin: 4px 8px;
+    width: 96%;
+    height: 64px;
+    padding: 4px 8px;
+    background: #0052b1;
+    border-radius: 8px;
+    font-weight: 800;
+    font-size: 2.5rem;
+}
 .card {
     display: flex;
     margin: 8px 4px;
@@ -62,9 +73,11 @@ footer {
     -moz-box-shadow: 0px 8px 4px -5px rgba(0, 0, 0, 0.28);
     box-shadow: 0px 8px 4px -5px rgba(0, 0, 0, 0.28);
     .card-photo{
-        padding: 8px;
-        border-radius: 20px;
-        background: #8a8d96;
+        padding: 4px;
+        margin: 4px;
+        border-radius: 8px;
+        background: #ffffff;
+        object-fit: contain;
     }
     .card-content {
         padding: 4px;
@@ -83,6 +96,25 @@ footer {
         background: #0052b1;
         border-radius: 8px;
     }
+    .coffee-addon-sugar{
+        position: absolute;
+        right: 0px;
+        bottom: 4px;
+        background: #8a8d96;
+        var {
+            position: relative;
+            bottom: 10px;
+            font-weight: 600;
+            background: inherit;
+        }
+        margin-right: 12px;
+        margin-left: auto;
+        .coffee-addon-sugar-add, .coffee-addon-sugar-remove {
+            background: inherit;
+            width: 32px;
+            height: 32px;
+        }
+    }
 }
 
 .coffee-drawer {
@@ -96,11 +128,12 @@ footer {
         min-width: 120px;
     }
     .coffee-drawer-cancel{
-        position: relative;
-        left: 36px;
-        bottom: 36px;
+        position: absolute;
+        right: 24px;
+        top: 24px;
         transform: scale(2);
         cursor: pointer;
+        background: transparent;
     }
     .coffee-drawer-title{
         display: flex;
@@ -118,11 +151,18 @@ footer {
             padding: 4px 8px;
         }
         .coffee-drawer-sizes {
-            .coffee-drawer-size-active{
-                color: green;
+            display: flex;
+            flex-direction: row;
+            .coffee-drawer-size-active, .coffee-drawer-size-inactive{
+                margin: 4px;
+                border: 1px solid #000;
+                border-radius: 8px;
+                padding: 6px 12px;
+                transition: 300ms ease;
             }
-            .coffee-drawer-size-inactive{
-                color: red;
+            .coffee-drawer-size-active{
+                background: #2c2c2c;
+                color: #fff;
             }
         }
         .coffee-addons-list{
