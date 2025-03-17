@@ -39,7 +39,7 @@ export default class TabsMenu extends Component {
           Десерты
         </div>
       </nav>
-      {this.state.tab===0 && <GoodsList data={this.props.data.filter((el)=> el.type === "coffee")} addons={this.props.addons} toggleDrawer={this.props.toggleDrawer}/>}
+      {this.state.tab===0 && <GoodsList data={this.props.data.filter((el)=> el.type === "coffee")} toggleDrawer={this.props.toggleDrawer}/>}
       </>
     )
   }

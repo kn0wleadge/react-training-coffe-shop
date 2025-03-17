@@ -11,7 +11,6 @@ export default class App extends Component {
   
     this.state = {
       isCoffeAddDrawerOpen: false,
-      coffeAddDrawerData: {},
       coffeaddonslist:[
         {
           id: 1,
@@ -21,6 +20,16 @@ export default class App extends Component {
         {
           id: 2,
           title: "Сироп 2",
+          price: 20
+        },
+        {
+          id: 4,
+          title: "Сироп 3",
+          price: 30
+        },
+        {
+          id: 5,
+          title: "Сироп 4",
           price: 20
         },
         {
@@ -68,6 +77,10 @@ export default class App extends Component {
           price: 229
         },
        ],
+      coffeAddDrawerData: {
+        info: 'init state',
+        sizes: []
+      },
        orderlist:[]
     }
     this.toggleDrawer = this.toggleDrawer.bind(this);
@@ -78,9 +91,9 @@ export default class App extends Component {
     return (
       <div>
         <Header />
-        <TabsMenu data={this.state.goodslist} addons={this.state.coffeaddonslist} order={this.state.orderlist} toggleDrawer={this.toggleDrawer}/>
+        <TabsMenu data={this.state.goodslist} order={this.state.orderlist} toggleDrawer={this.toggleDrawer}/>
         <Footer orderNum={this.state.orderlist.length}/>
-        <CoffeeAddForm isOpen={this.state.isCoffeAddDrawerOpen} toggleDrawer={this.toggleDrawer} data={this.state.coffeAddDrawerData}/>
+        <CoffeeAddForm isOpen={this.state.isCoffeAddDrawerOpen} toggleDrawer={this.toggleDrawer} data={this.state.coffeAddDrawerData} addons={this.state.coffeaddonslist}/>
       </div>
     )
   }

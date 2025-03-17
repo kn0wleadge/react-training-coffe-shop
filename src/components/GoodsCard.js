@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 
 export default class GoodsCard extends Component {
   data = this.props.data
-  addons = this.props.addons
   render() {
     return (
       <div className='card'>
