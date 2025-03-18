@@ -40,6 +40,8 @@ export default class TabsMenu extends Component {
         </div>
       </nav>
       {this.state.tab===0 && <GoodsList data={this.props.data.filter((el)=> el.type === "coffee")} toggleDrawer={this.props.toggleDrawer}/>}
+      {this.state.tab===1 && <GoodsList data={this.props.data.filter((el)=> el.type === "bakery")} toggleDrawer={this.props.toggleDrawer} onAdd={this.props.onAdd} onItemAmountChange={this.props.onItemAmountChange}/>}
+      {this.state.tab===2 && <GoodsList data={this.props.data.filter((el)=> el.type === "dessert")} toggleDrawer={this.props.toggleDrawer} onAdd={this.props.onAdd} onItemAmountChange={this.props.onItemAmountChange}/>}
       </>
     )
   }

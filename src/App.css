@@ -48,6 +48,8 @@ footer {
     z-index: 1000;
 }
 .footerTabs {
+    position: relative;
+    bottom: 0px;
     border-top: 1px solid #636363;
     border-bottom: 0;
     padding-bottom: 12px;
@@ -78,6 +80,7 @@ footer {
         border-radius: 8px;
         background: #ffffff;
         object-fit: contain;
+        width: 80px;
     }
     .card-content {
         padding: 4px;
@@ -86,6 +89,31 @@ footer {
         border-top-right-radius: 8px;
         h3, p {
             background: #8a8d96;
+        }
+        p{
+            max-width: 80%;
+        }
+        .goods-buttons {
+            position: absolute;
+            color: #000;
+            background: inherit;
+            right: 4px;
+            bottom: 4px;
+            var{
+                background: inherit;
+                position: relative;
+                bottom: 10px;
+                font-weight: 600;
+            }
+            .goods-button-add, .goods-button-remove{
+                background: inherit;
+                color: inherit;
+                width: 32px;
+                height: 32px;
+                path{
+                    color: #0052b1;
+                }
+            }
         }
     }
     .add-button {

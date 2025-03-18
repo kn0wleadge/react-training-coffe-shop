@@ -10,3 +10,7 @@
     font-weight: 300;
     font-style: normal;
 }
+
+#root {
+    min-height: 100vh;
+}

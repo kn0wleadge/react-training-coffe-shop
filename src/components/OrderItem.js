@@ -7,7 +7,7 @@ export default class OrderItem extends Component {
     super(props)
   
     this.state = {
-       amount: 1
+       amount: props.data.amount
     }
   }
   
@@ -16,7 +16,7 @@ export default class OrderItem extends Component {
       <div className='card'>
         <img className='card-photo' src={`./images/${this.props.data.title}.png`} alt={`${this.props.data.title}`}/>
         <div className='card-content'>
-          <h3>{this.props.data.title} {this.props.data.size} мЛ</h3>
+          <h3>{this.props.data.title} {this.props.data.size && <>{this.props.data.size} мЛ</>}</h3>
           {this.props.data.addons.length>0 && 
           this.props.data.addons.map((el)=>{return(<p key={`${this.props.data.id}-${el.title}`}>
             {el.title} {el.amount>1 && <>{el.amount} ложек</>}

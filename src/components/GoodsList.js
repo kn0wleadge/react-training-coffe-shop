@@ -7,7 +7,7 @@ export default class GoodsList extends Component {
   render() {
     return (
       <div className='goods-list'>
-        {this.data.map((el)=><GoodsCard key={el.id} data={el} toggleDrawer={this.props.toggleDrawer}/>)}
+        {this.data.map((el)=><GoodsCard key={el.id} data={el} toggleDrawer={this.props.toggleDrawer} onAdd={this.props.onAdd} onItemAmountChange={this.props.onItemAmountChange}/>)}
       </div>
     )
   }

@@ -15,23 +15,23 @@ export default class App extends Component {
       coffeaddonslist:[
         {
           id: 1,
-          title: "Сироп 1",
+          title: "Ореховый сироп",
           price: 30
         },
         {
           id: 2,
-          title: "Сироп 2",
+          title: "Шоколадный сироп",
           price: 20
         },
         {
           id: 4,
-          title: "Сироп 3",
+          title: "Ванильный сироп",
           price: 30
         },
         {
           id: 5,
-          title: "Сироп 4",
-          price: 20
+          title: "Карамельный сироп",
+          price: 10
         },
         {
           id: 3,
@@ -108,7 +108,7 @@ export default class App extends Component {
       <div>
         <Header />
         {this.state.footerTab===0 ?
-        <TabsMenu data={this.state.goodslist} order={this.state.orderlist} toggleDrawer={this.toggleDrawer}/>
+        <TabsMenu data={this.state.goodslist} order={this.state.orderlist} toggleDrawer={this.toggleDrawer} onAdd={this.addOrderItem} onItemAmountChange={this.changeOrderItemAmount}/>
         :(<OrderList data={this.state.orderlist} onItemAmountChange={this.changeOrderItemAmount}/>)}
         <Footer orderNum={this.state.orderlist.length} onTabChange={this.changeTab}/>
         <CoffeeAddForm isOpen={this.state.isCoffeAddDrawerOpen} toggleDrawer={this.toggleDrawer} data={this.state.coffeAddDrawerData} addons={this.state.coffeaddonslist} onAdd={this.addOrderItem}/>
@@ -128,16 +128,30 @@ export default class App extends Component {
 
   addOrderItem(item){
     let newOrderList = this.state.orderlist
-    newOrderList.push({...item, amount: 1, id: newOrderList.length+1})
+    newOrderList.push({id: newOrderList.length+1, ...item, amount: 1 })
     this.setState({orderlist: newOrderList})
   }
 
-  changeOrderItemAmount(id, newAmount){
-    let item = this.state.orderlist.filter((el)=>el.id===id)
-    let newOrderList = this.state.orderlist.filter((el)=>el.id!==id)
-    if (newAmount > 0){
-      item[0].amount = newAmount
-      newOrderList.push(...item)
+  changeOrderItemAmount(id, newAmount, type="order-tab"){
+    let newOrderList = this.state.orderlist
+    if (type==="order-tab")
+    {
+      if (newAmount > 0){
+        newOrderList[id-1].amount=newAmount
+      }
+      else {
+        newOrderList.splice(id-1,1)
+      }
+    }
+    else{
+      let item = this.state.goodslist.find((el)=>el.id===id)
+      item = this.state.orderlist.find((el)=>el.title===item.title)
+      if (newAmount > 0){
+        newOrderList[item.id-1].amount=newAmount
+      }
+      else {
+        newOrderList.splice(item.id-1,1)
+      }
     }
     this.setState({orderlist: newOrderList})
   }
